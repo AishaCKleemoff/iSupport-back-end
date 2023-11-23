@@ -7,7 +7,7 @@ CREATE DATABASE i_support_dev;
 CREATE TABLE support_groups (
   id SERIAL PRIMARY KEY,
   group_name TEXT NOT NULL,
-  meeting_time INT,
+  meeting_time TEXT,
   location VARCHAR(50),
   description TEXT,
   email TEXT,
