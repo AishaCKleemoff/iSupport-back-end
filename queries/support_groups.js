@@ -22,7 +22,7 @@ const getOneSupportGroup = async (id) => {
 
 const createSupportGroup = async (support_group) => {
   try {
-    const createSupportGroup = await db.one(
+    const createdSupportGroup = await db.one(
       "INSERT INTO support_groups (group_name, meeting_time, location, description, email, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *",
       [
         support_group.group_name,
@@ -33,7 +33,7 @@ const createSupportGroup = async (support_group) => {
         support_group.is_favorite,
       ]
     );
-    return createSupportGroup;
+    return createdSupportGroup;
   } catch (error) {
     return error;
   }
@@ -74,7 +74,7 @@ const updatedSupportGroup = async (id, support_group) => {
 module.exports = {
   getAllSupportGroups,
   getOneSupportGroup,
-  createSupportGroup,
+  createdSupportGroup,
   deletedSupportGroup,
   updatedSupportGroup,
 };
