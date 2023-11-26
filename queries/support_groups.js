@@ -39,7 +39,7 @@ const createSupportGroup = async (support_group) => {
   }
 };
 
-const deletedSupportGroup = async (id) => {
+const deleteSupportGroup = async (id) => {
   try {
     const deletedSupportGroup = await db.one(
       "DELETE FROM support_groups WHERE id = $1 RETURNING *",
@@ -51,7 +51,7 @@ const deletedSupportGroup = async (id) => {
   }
 };
 
-const updatedSupportGroup = async (id, support_group) => {
+const updateSupportGroup = async (id, support_group) => {
   try {
     const {
       group_name,
@@ -62,7 +62,7 @@ const updatedSupportGroup = async (id, support_group) => {
       is_favorite,
     } = support_group;
     const updatedSupportGroup = await db.one(
-      "UPDATE support_group SET group_name=$1, meetin_time=$2, location=$3, description=$4, email=$5, is_favorite=$6, WHERE id=$7 RETURNING *",
+      "UPDATE support_groups SET group_name=$1, meeting_time=$2, location=$3, description=$4, email=$5, is_favorite=$6 WHERE id=$7 RETURNING *",
       [group_name, meeting_time, location, description, email, is_favorite]
     );
     return updatedSupportGroup;
@@ -74,7 +74,7 @@ const updatedSupportGroup = async (id, support_group) => {
 module.exports = {
   getAllSupportGroups,
   getOneSupportGroup,
-  createdSupportGroup,
-  deletedSupportGroup,
-  updatedSupportGroup,
+  createSupportGroup,
+  deleteSupportGroup,
+  updateSupportGroup,
 };

@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS i_support_dev;
+DROP DATABASE IF EXISTS support_groups_dev;
 
-CREATE DATABASE i_support_dev;
+CREATE DATABASE support_groups_dev;
 
-\c i_support_dev;
+\c support_groups_dev;
 
 CREATE TABLE support_groups (
   id SERIAL PRIMARY KEY,

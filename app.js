@@ -1,4 +1,4 @@
-const express = requir("express");
+const express = require("express");
 const cors = require("cors");
 const app = express();
 const support_groupsController = require("./controllers/support_groupsController");

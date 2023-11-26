@@ -3,10 +3,10 @@ const express = require("express");
 const {
   getAllSupportGroups,
   getOneSupportGroup,
-  createdSupportGroup,
-  deletedSupportGroup,
-  updatedSupportGroup,
-} = require("../queries/support_groups");
+  createSupportGroup,
+  deleteSupportGroup,
+  updateSupportGroup,
+} = require("../queries/support_groups.js");
 
 const { checkGroupName, checkBoolean } = require("../validations/checkGroups");
 const support_groups = express.Router();
@@ -37,9 +37,9 @@ support_groups.get("/", async (req, res) => {
 support_groups.post("/", checkGroupName, checkBoolean, async (req, res) => {
   try {
     const createdSupportGroup = await createdSupportGroup(req.body);
-    res.json(createdSupportGroup);
+    res.json(createSupportGroup);
   } catch (error) {
-    res.status(400).json({ error: "Sorry an error has occured" });
+    res.status(400).json({ error: "Sorry, an error has occured" });
   }
 });
 
@@ -50,7 +50,7 @@ support_groups.delete("/:id", async (req, res) => {
     if (deletedSupportGroup) {
       res
         .status(200)
-        .json({ success: true, payload: { data: deletedSupportGroup } });
+        .json({ success: true, payload: { data: deleteSupportGroup } });
     } else {
       res.status(400).json("Support group was not found");
     }
@@ -63,7 +63,7 @@ support_groups.put("/:id", async (req, res) => {
   const { id } = req.params;
   const updatedSupportGroup = await updatedSupportGroup(id, req.body);
   if (updatedSupportGroup.id) {
-    res.status(200).json(updatedSupportGroup);
+    res.status(200).json(updateSupportGroup);
   } else res.status(400).json("Support group with that id was not found");
 });
 
