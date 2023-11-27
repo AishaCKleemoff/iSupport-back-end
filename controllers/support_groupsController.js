@@ -36,9 +36,10 @@ support_groups.get("/", async (req, res) => {
 
 support_groups.post("/", checkGroupName, checkBoolean, async (req, res) => {
   try {
-    const createdSupportGroup = await createdSupportGroup(req.body);
-    res.json(createSupportGroup);
+    const createdSupportGroup = await createSupportGroup(req.body);
+    res.json(createdSupportGroup);
   } catch (error) {
+    console.error("Error creating support group:", error);
     res.status(400).json({ error: "Sorry, an error has occured" });
   }
 });
@@ -46,13 +47,13 @@ support_groups.post("/", checkGroupName, checkBoolean, async (req, res) => {
 support_groups.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedSupportGroup = await deletedSupportGroup(id);
+    const deletedSupportGroup = await deleteSupportGroup(id);
     if (deletedSupportGroup) {
       res
         .status(200)
-        .json({ success: true, payload: { data: deleteSupportGroup } });
+        .json({ success: true, payload: { data: deletedSupportGroup } });
     } else {
-      res.status(400).json("Support group was not found");
+      res.status(404).json("Support group was not found");
     }
   } catch (err) {
     res.send(err);
@@ -61,9 +62,9 @@ support_groups.delete("/:id", async (req, res) => {
 
 support_groups.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const updatedSupportGroup = await updatedSupportGroup(id, req.body);
+  const updatedSupportGroup = await updateSupportGroup(id, req.body);
   if (updatedSupportGroup.id) {
-    res.status(200).json(updateSupportGroup);
+    res.status(200).json(updatedSupportGroup);
   } else res.status(400).json("Support group with that id was not found");
 });
 
