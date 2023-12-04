@@ -23,7 +23,7 @@ const getOneSupportGroup = async (id) => {
 const createSupportGroup = async (support_group) => {
   try {
     const createdSupportGroup = await db.one(
-      "INSERT INTO support_groups (group_name, meeting_time, location, description, email, is_favorite) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+      "INSERT INTO support_groups (group_name, meeting_time, location, description, email, is_favorite, image) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
       [
         support_group.group_name,
         support_group.meeting_time,
@@ -31,6 +31,7 @@ const createSupportGroup = async (support_group) => {
         support_group.description,
         support_group.email,
         support_group.is_favorite,
+        support_group.image,
       ]
     );
     return createdSupportGroup;
@@ -60,10 +61,20 @@ const updateSupportGroup = async (id, support_group) => {
       description,
       email,
       is_favorite,
+      image,
     } = support_group;
     const updatedSupportGroup = await db.one(
-      "UPDATE support_groups SET group_name=$1, meeting_time=$2, location=$3, description=$4, email=$5, is_favorite=$6 WHERE id=$7 RETURNING *",
-      [group_name, meeting_time, location, description, email, is_favorite, id]
+      "UPDATE support_groups SET group_name=$1, meeting_time=$2, location=$3, description=$4, email=$5, is_favorite=$6, image=$7 WHERE id=$8 RETURNING *",
+      [
+        group_name,
+        meeting_time,
+        location,
+        description,
+        email,
+        is_favorite,
+        image,
+        id,
+      ]
     );
     return updatedSupportGroup;
   } catch (err) {

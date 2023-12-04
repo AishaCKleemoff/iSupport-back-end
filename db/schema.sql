@@ -12,5 +12,5 @@ CREATE TABLE support_groups (
   description TEXT,
   email TEXT,
   is_favorite BOOLEAN,
-  image TEXT
+  image VARCHAR(200)
 );
