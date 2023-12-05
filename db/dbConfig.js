@@ -7,7 +7,7 @@ const cn = {
   port: process.env.PG_PORT,
   database: process.env.PG_DATABASE,
   user: process.env.PG_USER,
-  PG_PASSWORD: I3S6gsrWbkCFk3vBPjSQRfAKBJphRklG,
+  password: process.env.PG_PASSWORD,
 };
 
 const db = pgp(cn);
