@@ -1,6 +1,6 @@
 \c support_groups_dev;
 
-INSERT INTO support_groups (group_name, meeting_time, location, description, email, is_favorite)
+INSERT INTO support_groups (group_name, meeting_time, location, description, email, is_favorite, image)
 VALUES
 ('New Parent', '12:00PM', '177 Myrtle Ave, Brooklyn, NY 11201', 'A support group for new parents looking for support insight into ideas and resources for people new to parenting.', 'newparents@newparent.org', false, 'https://images.unsplash.com/photo-1596510914841-40223e421e29?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
 ('Teen Peers', '6:00PM', '1 Old, Dock St, Brooklyn, NY 11201', 'A support group for teens as peers adjusting to life while preparing for adulthood.', 'teenpeers@supportyou.com', true, 'https://images.unsplash.com/photo-1484712401471-05c7215830eb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
